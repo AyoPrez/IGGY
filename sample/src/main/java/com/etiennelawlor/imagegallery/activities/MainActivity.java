@@ -110,11 +110,8 @@ public class MainActivity extends AppCompatActivity implements ImageGalleryAdapt
                         @Override
                         public void onSuccess() {
                             Bitmap bitmap = ((BitmapDrawable) iv.getDrawable()).getBitmap();
-                            Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
-                                public void onGenerated(Palette palette) {
-                                    PaletteHelper.applyPalette(palette, PaletteColorType.VIBRANT, bgLinearLayout);
-                                }
-                            });
+
+                            PaletteHelper.applyPalette(bitmap, PaletteColorType.VIBRANT, bgLinearLayout);
                         }
 
                         @Override

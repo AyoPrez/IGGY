@@ -1,16 +1,10 @@
 package com.etiennelawlor.imagegallery.library;
 
+import android.graphics.Bitmap;
 import android.support.v7.graphics.Palette;
 import android.widget.LinearLayout;
 
 import com.etiennelawlor.imagegallery.library.enums.PaletteColorType;
-
-import static com.etiennelawlor.imagegallery.library.enums.PaletteColorType.DARK_MUTED;
-import static com.etiennelawlor.imagegallery.library.enums.PaletteColorType.DARK_VIBRANT;
-import static com.etiennelawlor.imagegallery.library.enums.PaletteColorType.LIGHT_MUTED;
-import static com.etiennelawlor.imagegallery.library.enums.PaletteColorType.LIGHT_VIBRANT;
-import static com.etiennelawlor.imagegallery.library.enums.PaletteColorType.MUTED;
-import static com.etiennelawlor.imagegallery.library.enums.PaletteColorType.VIBRANT;
 
 /**
  * Created by ayo on 19.11.16.
@@ -19,7 +13,15 @@ import static com.etiennelawlor.imagegallery.library.enums.PaletteColorType.VIBR
 public class PaletteHelper {
 
     // region Helper Methods
-    public static void applyPalette(Palette palette, PaletteColorType paletteColorType, LinearLayout bgLinearLayout){
+    public static void applyPalette(Bitmap bitmap, final PaletteColorType paletteColorType, final LinearLayout bgLinearLayout){
+        Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
+            public void onGenerated(Palette palette) {
+                PaletteHelper.setPaletteEffect(palette, paletteColorType, bgLinearLayout);
+            }
+        });
+    }
+
+    private static void setPaletteEffect(Palette palette, PaletteColorType paletteColorType, LinearLayout bgLinearLayout){
         int bgColor = getBackgroundColor(palette, paletteColorType);
         if (bgColor != -1)
             bgLinearLayout.setBackgroundColor(bgColor);
