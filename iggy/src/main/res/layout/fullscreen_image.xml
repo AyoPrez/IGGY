@@ -5,7 +5,7 @@
     android:background="@color/grey_800"
     android:id="@+id/ll">
 
-    <com.etiennelawlor.imagegallery.library.view.TouchImageView
+    <com.ayoprez.iggy.library.view.TouchImageView
         android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

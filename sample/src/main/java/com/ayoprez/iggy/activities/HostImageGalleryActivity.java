@@ -1,4 +1,4 @@
-package com.etiennelawlor.imagegallery.activities;
+package com.ayoprez.iggy.activities;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 
+import com.ayoprez.iggy.R;
 import com.ayoprez.iggy.library.ImageGalleryFragment;
-import com.etiennelawlor.imagegallery.R;
 
 import butterknife.ButterKnife;
 

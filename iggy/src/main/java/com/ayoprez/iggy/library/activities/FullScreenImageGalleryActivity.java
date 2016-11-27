@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ import com.ayoprez.easydownloader.Downloader;
 import com.ayoprez.iggy.library.R;
 import com.ayoprez.iggy.library.adapters.FullScreenImageGalleryAdapter;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -41,7 +43,6 @@ public class FullScreenImageGalleryActivity extends AppCompatActivity implements
     // region Views
     private Toolbar toolbar;
     private ViewPager viewPager;
-    private ImageView imageView;
     private Downloader downloader;
     // endregion
 
@@ -50,6 +51,7 @@ public class FullScreenImageGalleryActivity extends AppCompatActivity implements
     private int position;
     private boolean downloadButton = false;
     private boolean shareButton = false;
+    private ArrayList<ImageView> imageViewArrayList = new ArrayList<>();
     private static FullScreenImageGalleryAdapter.FullScreenImageLoader fullScreenImageLoader;
     // endregion
 
@@ -135,8 +137,8 @@ public class FullScreenImageGalleryActivity extends AppCompatActivity implements
             downloadImage(images.get(position));
             return true;
         } else if(item.getItemId() == R.id.share_image) {
-            if (imageView != null){
-                shareImage(Uri.parse(images.get(position)));
+            if (imageViewArrayList != null){
+                shareImage();
                 return true;
             }else{
                 return false;
@@ -148,17 +150,27 @@ public class FullScreenImageGalleryActivity extends AppCompatActivity implements
 
     // region FullScreenImageGalleryAdapter.FullScreenImageLoader Methods
     @Override
-    public void loadFullScreenImage(ImageView iv, String imageUrl, int width, LinearLayout bglinearLayout) {
-        fullScreenImageLoader.loadFullScreenImage(iv, imageUrl, width, bglinearLayout);
-        imageView = iv;
+    public void loadFullScreenImage(ImageView iv, String imageUrl, int width, LinearLayout bgLinearLayout) {
+        fullScreenImageLoader.loadFullScreenImage(iv, imageUrl, width, bgLinearLayout);
+
+        imageViewArrayList.add(iv);
     }
 
     private void downloadImage(String imageUrl){
         downloader.download(imageUrl);
     }
 
-    private void shareImage(Uri imageUri) {
+    private void shareImage() {
 
+        Uri bmpUri = getLocalBitmapUri(imageViewArrayList.get(0));
+        if (bmpUri != null) {
+            // Construct a ShareIntent with link to image
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+            shareIntent.setType("image/*");
+            startActivity(Intent.createChooser(shareIntent, ""));
+        }
     }
     // endregion
 
@@ -194,9 +206,6 @@ public class FullScreenImageGalleryActivity extends AppCompatActivity implements
         // Store image to default external storage directory
         Uri bmpUri = null;
         try {
-            // Use methods on Context to access package-specific directories on external storage.
-            // This way, you don't need to request external read/write permission.
-            // See https://youtu.be/5xVh-7ywKpE?t=25m25s
             File file =  new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "share_image_" + System.currentTimeMillis() + ".png");
             FileOutputStream out = new FileOutputStream(file);
             bmp.compress(Bitmap.CompressFormat.PNG, 90, out);

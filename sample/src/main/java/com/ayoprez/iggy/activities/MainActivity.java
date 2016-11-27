@@ -1,4 +1,4 @@
-package com.etiennelawlor.imagegallery.activities;
+package com.ayoprez.iggy.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.ayoprez.iggy.R;
 import com.ayoprez.iggy.library.ImageGalleryFragment;
 import com.ayoprez.iggy.library.PaletteHelper;
 import com.ayoprez.iggy.library.activities.FullScreenImageGalleryActivity;
@@ -16,7 +17,6 @@ import com.ayoprez.iggy.library.activities.ImageGalleryActivity;
 import com.ayoprez.iggy.library.adapters.FullScreenImageGalleryAdapter;
 import com.ayoprez.iggy.library.adapters.ImageGalleryAdapter;
 import com.ayoprez.iggy.library.enums.PaletteColorType;
-import com.etiennelawlor.imagegallery.R;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;

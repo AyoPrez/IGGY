@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.etiennelawlor.imagegallery">
+    package="com.ayoprez.iggy">
 
     <application
         android:allowBackup="true"
@@ -8,7 +8,7 @@
         android:theme="@style/AppTheme" >
 
         <activity
-            android:name="com.etiennelawlor.imagegallery.library.activities.ImageGalleryActivity"
+            android:name="com.ayoprez.iggy.library.activities.ImageGalleryActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label=""
             android:theme="@style/ImageGalleryTheme" />
