@@ -5,8 +5,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+
+import com.ayoprez.iggy.library.ImageGalleryFragment;
 import com.etiennelawlor.imagegallery.R;
-import com.etiennelawlor.imagegallery.library.ImageGalleryFragment;
 
 import butterknife.ButterKnife;
 

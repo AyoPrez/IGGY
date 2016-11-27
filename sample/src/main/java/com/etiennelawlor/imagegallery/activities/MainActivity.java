@@ -3,36 +3,24 @@ package com.etiennelawlor.imagegallery.activities;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.graphics.Palette;
-import android.support.v7.widget.ThemedSpinnerAdapter;
 import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
+import com.ayoprez.iggy.library.ImageGalleryFragment;
+import com.ayoprez.iggy.library.PaletteHelper;
+import com.ayoprez.iggy.library.activities.FullScreenImageGalleryActivity;
+import com.ayoprez.iggy.library.activities.ImageGalleryActivity;
+import com.ayoprez.iggy.library.adapters.FullScreenImageGalleryAdapter;
+import com.ayoprez.iggy.library.adapters.ImageGalleryAdapter;
+import com.ayoprez.iggy.library.enums.PaletteColorType;
 import com.etiennelawlor.imagegallery.R;
-import com.etiennelawlor.imagegallery.library.ImageGalleryFragment;
-import com.etiennelawlor.imagegallery.library.PaletteHelper;
-import com.etiennelawlor.imagegallery.library.activities.FullScreenImageGalleryActivity;
-import com.etiennelawlor.imagegallery.library.activities.ImageGalleryActivity;
-import com.etiennelawlor.imagegallery.library.adapters.FullScreenImageGalleryAdapter;
-import com.etiennelawlor.imagegallery.library.adapters.ImageGalleryAdapter;
-import com.etiennelawlor.imagegallery.library.enums.PaletteColorType;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -122,20 +110,6 @@ public class MainActivity extends AppCompatActivity implements ImageGalleryAdapt
         } else {
             iv.setImageDrawable(null);
         }
-    }
-
-    @Override
-    public void imageShareOption(Uri image) {
-        Toast.makeText(this, "Share this", Toast.LENGTH_LONG).show();
-    }
-
-    String imgUrl;
-
-    @Override
-    public void imageDownloadOption(String imageUrl) {
-        Toast.makeText(this, "Download this", Toast.LENGTH_LONG).show();
-
-        imgUrl = imageUrl;
     }
     // endregion
 
