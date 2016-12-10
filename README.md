@@ -17,7 +17,7 @@ Supports pinch-to-zoom on the images
 
 ImageGalleryActivity           |  FullScreenImageGallery
 :-------------------------:|:-------------------------:
-![](https://raw.githubusercontent.com/lawloretienne/ImageGallery/master/images/ImageGallery_Screenshot7.png)  |  ![](https://raw.githubusercontent.com/lawloretienne/ImageGallery/master/images/ImageGallery_Screenshot8.png)
+![](https://raw.githubusercontent.com/ayoprez/IGGY/master/images/image_gallery.png)  |  ![](https://raw.githubusercontent.com//ayoprez/IGGY/master/images/full_screen.png)
 
 ## Setup
 
@@ -43,6 +43,9 @@ String[] images = getResources().getStringArray(R.array.unsplash_images);
         Bundle bundle = new Bundle();
         bundle.putStringArrayList(ImageGalleryActivity.KEY_IMAGES, new ArrayList<>(Arrays.asList(images)));
         bundle.putString(ImageGalleryActivity.KEY_TITLE, "Unsplash Images");
+        bundle.putBoolean(FullScreenImageGalleryActivity.KEY_DOWNLOAD_BUTTON, true);
+        bundle.putBoolean(FullScreenImageGalleryActivity.KEY_SHARE_BUTTON, true);
+
         intent.putExtras(bundle);
 
 startActivity(intent);
@@ -55,36 +58,61 @@ If you want to use the ImageGalleryActivity you must declare the following in yo
 
 <!-- Declare this activity in your AndroidManfest.xml -->
 <activity
-    android:name="com.etiennelawlor.imagegallery.library.activities.ImageGalleryActivity"
+    android:name="com.ayoprez.iggy.library.activities.ImageGalleryActivity"
     android:configChanges="orientation|keyboardHidden|screenSize"
     android:label=""
     android:theme="@style/ImageGalleryTheme" />
 ```
 
-Alternatively, you can now use the ImageGalleryFragment and host the fragment in your own Activity.
+Alternatively, you can use the ImageGalleryFragment and host the fragment in your own Activity. In that case you can do something like this in an activity:
+
+```java
+Fragment fragment = getSupportFragmentManager().findFragmentById(android.R.id.content);
+        if (fragment == null) {
+            fragment = ImageGalleryFragment.newInstance(getIntent().getExtras());
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(android.R.id.content, fragment, "")
+                    .commit();
+        } else {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .attach(fragment)
+                    .commit();
+        }
+```
+
+If you want to implement the palette to the images, you should use the PaletteHelper class:
+
+```java
+Bitmap bitmap = ((BitmapDrawable) iv.getDrawable()).getBitmap();
+
+PaletteHelper.applyPalette(bitmap, PaletteColorType.VIBRANT, bgLinearLayout);
+```
+
 
 ### Important Note
-You must now set up image loading by implementing these interfaces `ImageGalleryAdapter.ImageThumbnailLoader` and `FullScreenImageGalleryAdapter.FullScreenImageLoader`. See https://github.com/lawloretienne/ImageGallery/blob/master/sample/src/main/java/com/etiennelawlor/imagegallery/activities/MainActivity.java .
+You must set up image loading by implementing these interfaces `ImageGalleryAdapter.ImageThumbnailLoader` and `FullScreenImageGalleryAdapter.FullScreenImageLoader`. See https://github.com/ayoprez/IGGY/blob/master/sample/src/main/java/com/ayoprez/iggy/activities/MainActivity.java .
 
 
 ## Developed By
 
-* Etienne Lawlor 
+* Ayoze Pérez
  
-&nbsp;&nbsp;&nbsp;**Email** - lawloretienne@gmail.com
+&nbsp;&nbsp;&nbsp;**Email** - arezrod@gmail.com
 
-&nbsp;&nbsp;&nbsp;**Website** - https://medium.com/@etiennelawlor
+&nbsp;&nbsp;&nbsp;**Blog** - https://medium.com/@ayoprez
 
-## Projects/Apps using ImageGallery
+&nbsp;&nbsp;&nbsp;**Website** - http://ayoprez.com
 
-- <a href="https://play.google.com/store/apps/details?id=com.biggu.shopsavvy&hl=en">ShopSavvy</a>
+###Inspired in
 
-Feel free to contact me to add yours to this list.
+<a href="https://github.com/lawloretienne/ImageGallery">ImageGallery</a> by <a href="https://github.com/lawloretienne">Etienne Lawlor</a>
 
 ## License
 
 ```
-Copyright 2015 Etienne Lawlor
+Copyright 2016 Ayoze Pérez
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
