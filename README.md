@@ -36,6 +36,8 @@ ImageGalleryActivity           |  FullScreenImageGallery
 
 ## Sample Usage
 
+You can choose to show or not the Download and Share button. Just add to the bundle your desire. By default the option is false.
+
 ```java
 Intent intent = new Intent(MainActivity.this, ImageGalleryActivity.class);
 
