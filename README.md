@@ -17,7 +17,7 @@ Supports pinch-to-zoom on the images
 
 ImageGalleryActivity           |  FullScreenImageGallery
 :-------------------------:|:-------------------------:
-![](https://raw.githubusercontent.com/ayoprez/IGGY/master/images/image_gallery.png)  |  ![](https://raw.githubusercontent.com//ayoprez/IGGY/master/images/full_screen.png)
+![](https://raw.githubusercontent.com/ayoprez/IGGY/master/images/image_gallery.png)  |  ![](https://raw.githubusercontent.com/ayoprez/IGGY/master/images/full_screen.png)
 
 ## Setup
 
