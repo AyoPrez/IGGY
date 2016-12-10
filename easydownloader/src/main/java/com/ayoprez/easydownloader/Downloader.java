@@ -1,9 +1,13 @@
 package com.ayoprez.easydownloader;
 
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 
 public class Downloader implements DownloadUtil.Listener{
 
@@ -29,7 +33,11 @@ public class Downloader implements DownloadUtil.Listener{
     }
 
     public void download(Uri uriString) {
-        downloadUtil.download(uriString);
+        if(ActivityCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            downloadUtil.download(uriString);
+        } else {
+            ActivityCompat.requestPermissions((Activity)context,  new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+        }
     }
 
     @Override

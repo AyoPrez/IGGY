@@ -22,6 +22,9 @@ import com.ayoprez.iggy.library.view.GridSpacesItemDecoration;
 
 import java.util.ArrayList;
 
+import static com.ayoprez.iggy.library.activities.FullScreenImageGalleryActivity.KEY_DOWNLOAD_BUTTON;
+import static com.ayoprez.iggy.library.activities.FullScreenImageGalleryActivity.KEY_SHARE_BUTTON;
+
 /**
  * Created by etiennelawlor on 6/10/16.
  */
@@ -43,6 +46,8 @@ public class ImageGalleryFragment extends Fragment implements ImageGalleryAdapte
     private String title;
     private GridSpacesItemDecoration gridSpacesItemDecoration;
     private static ImageGalleryAdapter.ImageThumbnailLoader imageThumbnailLoader;
+    private boolean downloadButton = false;
+    private boolean shareButton = false;
     // endregion
 
     // region Constructors
@@ -73,6 +78,8 @@ public class ImageGalleryFragment extends Fragment implements ImageGalleryAdapte
         if (getArguments() != null) {
             images = getArguments().getStringArrayList(KEY_IMAGES);
             title = getArguments().getString(KEY_TITLE);
+            downloadButton = getArguments().getBoolean(KEY_DOWNLOAD_BUTTON);
+            shareButton = getArguments().getBoolean(KEY_SHARE_BUTTON);
         }
     }
 
@@ -108,8 +115,9 @@ public class ImageGalleryFragment extends Fragment implements ImageGalleryAdapte
         Bundle bundle = new Bundle();
         bundle.putStringArrayList(FullScreenImageGalleryActivity.KEY_IMAGES, images);
         bundle.putInt(FullScreenImageGalleryActivity.KEY_POSITION, position);
+        bundle.putBoolean(KEY_SHARE_BUTTON, shareButton);
+        bundle.putBoolean(KEY_DOWNLOAD_BUTTON, downloadButton);
         intent.putExtras(bundle);
-
         startActivity(intent);
     }
     // endregion

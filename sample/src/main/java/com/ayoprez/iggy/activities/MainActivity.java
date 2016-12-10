@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements ImageGalleryAdapt
         Bundle bundle = new Bundle();
         bundle.putStringArrayList(ImageGalleryActivity.KEY_IMAGES, new ArrayList<>(Arrays.asList(images)));
         bundle.putString(ImageGalleryActivity.KEY_TITLE, "Unsplash Images");
+        bundle.putBoolean(FullScreenImageGalleryActivity.KEY_DOWNLOAD_BUTTON, true);
+        bundle.putBoolean(FullScreenImageGalleryActivity.KEY_SHARE_BUTTON, true);
         intent.putExtras(bundle);
 
         startActivity(intent);
@@ -52,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements ImageGalleryAdapt
         Bundle bundle = new Bundle();
         bundle.putStringArrayList(ImageGalleryFragment.KEY_IMAGES, new ArrayList<>(Arrays.asList(images)));
         bundle.putString(ImageGalleryActivity.KEY_TITLE, "Unsplash Images");
+        bundle.putBoolean(FullScreenImageGalleryActivity.KEY_DOWNLOAD_BUTTON, true);
+        bundle.putBoolean(FullScreenImageGalleryActivity.KEY_SHARE_BUTTON, true);
         intent.putExtras(bundle);
 
         startActivity(intent);

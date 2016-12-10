@@ -1,5 +1,5 @@
-# ImageGallery [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ImageGallery-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/2364)
-A gallery used to host an array of images
+# IGGY
+Based on ImageGallery by <a href="https://github.com/lawloretienne/ImageGallery">lawloretienne </a>, it is a easy to implement library to create a gallery to host an array of images
 
 You can add one or more images to the gallery
 
@@ -23,14 +23,14 @@ ImageGalleryActivity           |  FullScreenImageGallery
 
 #### Gradle
 
-`compile 'com.github.lawloretienne:imagegallery:0.0.15'`
+`compile 'com.ayoprez:iggy:0.1.0'`
 
 #### Maven
 ```
 <dependency>
-    <groupId>com.github.lawloretienne</groupId>
-    <artifactId>imagegallery</artifactId>
-    <version>0.0.15</version>
+    <groupId>com.ayoprez</groupId>
+    <artifactId>iggy</artifactId>
+    <version>0.1.0</version>
 </dependency>
 ```
 

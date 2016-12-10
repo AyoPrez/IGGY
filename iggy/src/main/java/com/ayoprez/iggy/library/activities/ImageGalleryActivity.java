@@ -19,6 +19,9 @@ import com.ayoprez.iggy.library.view.GridSpacesItemDecoration;
 
 import java.util.ArrayList;
 
+import static com.ayoprez.iggy.library.activities.FullScreenImageGalleryActivity.KEY_DOWNLOAD_BUTTON;
+import static com.ayoprez.iggy.library.activities.FullScreenImageGalleryActivity.KEY_SHARE_BUTTON;
+
 public class ImageGalleryActivity extends AppCompatActivity implements ImageGalleryAdapter.OnImageClickListener, ImageGalleryAdapter.ImageThumbnailLoader {
 
     // region Constants
@@ -36,6 +39,8 @@ public class ImageGalleryActivity extends AppCompatActivity implements ImageGall
     private String title;
     private GridSpacesItemDecoration gridSpacesItemDecoration;
     private static ImageGalleryAdapter.ImageThumbnailLoader imageThumbnailLoader;
+    private boolean downloadButton = false;
+    private boolean shareButton = false;
     // endregion
 
     // region Lifecycle Methods
@@ -49,6 +54,8 @@ public class ImageGalleryActivity extends AppCompatActivity implements ImageGall
             if (extras != null) {
                 images = extras.getStringArrayList(KEY_IMAGES);
                 title = extras.getString(KEY_TITLE);
+                downloadButton = extras.getBoolean(KEY_DOWNLOAD_BUTTON);
+                shareButton = extras.getBoolean(KEY_SHARE_BUTTON);
             }
         }
 
@@ -91,8 +98,8 @@ public class ImageGalleryActivity extends AppCompatActivity implements ImageGall
         Bundle bundle = new Bundle();
         bundle.putStringArrayList(FullScreenImageGalleryActivity.KEY_IMAGES, images);
         bundle.putInt(FullScreenImageGalleryActivity.KEY_POSITION, position);
-        bundle.putBoolean(FullScreenImageGalleryActivity.KEY_SHARE_BUTTON, true);
-        bundle.putBoolean(FullScreenImageGalleryActivity.KEY_DOWNLOAD_BUTTON, true);
+        bundle.putBoolean(KEY_SHARE_BUTTON, shareButton);
+        bundle.putBoolean(KEY_DOWNLOAD_BUTTON, downloadButton);
         intent.putExtras(bundle);
         startActivity(intent);
     }

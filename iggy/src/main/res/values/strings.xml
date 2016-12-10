@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ImageGallery</string>
+    <string name="app_name">Iggy</string>
     <string name="content_description">content description</string>
     <string name="download">Download</string>
     <string name="share_image">Share</string>
